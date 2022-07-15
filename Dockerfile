@@ -23,6 +23,6 @@ ENV S2I_SCRIPTS_PATH=/usr/libexec/s2i \
     DATABASE_URL='postgresql://sampledb:sampledb@blog-database:5432/sampledb'   
 
 RUN pip install --upgrade setuptools  && \
-    /tmp/scripts/assemble
+    pip install powershift-cli[image]
 
 CMD [ "/tmp/scripts/run" ]
