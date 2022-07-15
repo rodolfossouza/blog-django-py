@@ -26,7 +26,6 @@ ENV S2I_SCRIPTS_PATH=/usr/libexec/s2i \
 
 
 
-RUN export LD_RUN_PATH=/usr/local/lib && \
-    /tmp/scripts/assemble
+RUN  /tmp/scripts/assemble
 
 CMD [ "/tmp/scripts/run" ]
