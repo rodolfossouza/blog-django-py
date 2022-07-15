@@ -1,12 +1,18 @@
-FROM centos/python-35-centos7:latest
+FROM centos:7
 
 USER root
 
 COPY . /tmp/src
 
-RUN mv /tmp/src/.s2i/bin /tmp/scripts
-RUN pip install --upgrade setuptools \
+RUN sudo yum install scl-utils -f \
+    sudo yum install centos-release-scl-rh \
+    sudo yum install python27 \   
+    pip install --upgrade setuptools \
     pip install powershift-cli[all]
+    
+RUN mv /tmp/src/.s2i/bin /tmp/scripts
+
+
     
 RUN rm -rf /tmp/src/.git* && \
     chown -R 1001 /tmp/src && \
