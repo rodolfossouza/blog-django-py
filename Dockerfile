@@ -1,15 +1,10 @@
-FROM centos:7
+FROM centos/python-35-centos7:latest
 
 USER root
 
 COPY . /tmp/src
 
-RUN sudo yum install -f python3 \   
-    pip3 install --upgrade setuptools \
-    pip3 install powershift-cli[all]
-    
 RUN mv /tmp/src/.s2i/bin /tmp/scripts
-
 
     
 RUN rm -rf /tmp/src/.git* && \
@@ -27,4 +22,6 @@ ENV S2I_SCRIPTS_PATH=/usr/libexec/s2i \
     BLOG_BANNER_COLOR='blue' \
     DATABASE_URL='postgresql://sampledb:sampledb@blog-database:5432/sampledb'   
 
-CMD [ "/tmp/scripts/run" ]
+
+
+CMD [ "exec", "powershift", "image", "run" ]
