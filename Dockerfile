@@ -5,6 +5,7 @@ USER root
 COPY . /tmp/src
 
 RUN mv /tmp/src/.s2i/bin /tmp/scripts
+
     
 RUN rm -rf /tmp/src/.git* && \
     chown -R 1001 /tmp/src && \
@@ -21,6 +22,7 @@ ENV S2I_SCRIPTS_PATH=/usr/libexec/s2i \
     BLOG_BANNER_COLOR='blue' \
     DATABASE_URL='postgresql://sampledb:sampledb@blog-database:5432/sampledb'   
 
-RUN /tmp/scripts/assemble
+RUN pip install --upgrade setuptools  && \
+    /tmp/scripts/assemble
 
 CMD [ "/tmp/scripts/run" ]
