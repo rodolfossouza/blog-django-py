@@ -7,7 +7,8 @@ COPY . /tmp/src
 RUN mv /tmp/src/.s2i/bin /tmp/scripts
 
     
-RUN rm -rf /tmp/src/.git* && \
+RUN pip install powershift && \
+    rm -rf /tmp/src/.git* && \
     chown -R 1001 /tmp/src && \
     chgrp -R 0 /tmp/src && \
     chmod -R 777 /tmp/src
