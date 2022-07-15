@@ -5,13 +5,14 @@ USER root
 COPY . /tmp/src
 
 RUN mv /tmp/src/.s2i/bin /tmp/scripts
+    
 
     
-RUN pip install powershift && \
-    rm -rf /tmp/src/.git* && \
+RUN rm -rf /tmp/src/.git* && \
     chown -R 1001 /tmp/src && \
     chgrp -R 0 /tmp/src && \
-    chmod -R 777 /tmp/src
+    chmod -R 777 /tmp/src && \
+    export LD_RUN_PATH=/usr/local/lib
 
 USER 1001
 
@@ -25,4 +26,7 @@ ENV S2I_SCRIPTS_PATH=/usr/libexec/s2i \
 
 
 
-CMD [ "exec", "powershift", "image", "run" ]
+RUN export LD_RUN_PATH=/usr/local/lib && \
+    /tmp/scripts/assemble
+
+CMD [ "/tmp/scripts/run" ]
