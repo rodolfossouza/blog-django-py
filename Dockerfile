@@ -4,11 +4,9 @@ USER root
 
 COPY . /tmp/src
 
-RUN sudo yum install scl-utils -f \
-    sudo yum install centos-release-scl-rh \
-    sudo yum install python27 \   
-    pip install --upgrade setuptools \
-    pip install powershift-cli[all]
+RUN sudo yum install -f python3 \   
+    pip3 install --upgrade setuptools \
+    pip3 install powershift-cli[all]
     
 RUN mv /tmp/src/.s2i/bin /tmp/scripts
 
