@@ -5,7 +5,8 @@ USER root
 COPY . /tmp/src
 
 RUN mv /tmp/src/.s2i/bin /tmp/scripts
-
+RUN pip install --upgrade setuptools \
+    pip install powershift-cli[all]
     
 RUN rm -rf /tmp/src/.git* && \
     chown -R 1001 /tmp/src && \
@@ -21,8 +22,5 @@ ENV S2I_SCRIPTS_PATH=/usr/libexec/s2i \
     BLOG_SITE_NAME='GRUPO10 - SOlUTION SPRINT FASE 4 - MBA ARQUITETURA DE SOLUÇÕES' \
     BLOG_BANNER_COLOR='blue' \
     DATABASE_URL='postgresql://sampledb:sampledb@blog-database:5432/sampledb'   
-
-RUN pip install --upgrade setuptools \
-    pip install powershift-cli[all]
 
 CMD [ "/tmp/scripts/run" ]
