@@ -1,25 +1,25 @@
-FROM centos/python-35-centos7:latest
+FROM rodnetcontainer/grupo10blog:v1
 
-USER root
+# USER root
 
-COPY . /tmp/src
+# COPY . /tmp/src
 
-RUN mv /tmp/src/.s2i/bin /tmp/scripts
+# RUN mv /tmp/src/.s2i/bin /tmp/scripts
 
-RUN rm -rf /tmp/src/.git* && \
-    chown -R 1001 /tmp/src && \
-    chgrp -R 0 /tmp/src && \
-    chmod -R g+w /tmp/src
+# RUN rm -rf /tmp/src/.git* && \
+#     chown -R 1001 /tmp/src && \
+#     chgrp -R 0 /tmp/src && \
+#     chmod -R g+w /tmp/src
 
-USER 1001
+# USER 1001
 
-ENV S2I_SCRIPTS_PATH=/usr/libexec/s2i \
-    S2I_BASH_ENV=/opt/app-root/etc/scl_enable \
-    DISABLE_COLLECTSTATIC=1 \
-    DISABLE_MIGRATE=1 \
-    BLOG_SITE_NAME='GRUPO10 - SOlUTION SPRINT FASE 4 - MBA ARQUITETURA DE SOLUÇÕES' \
-    BLOG_BANNER_COLOR='blue' \
-    DATABASE_URL='postgresql://sampledb:sampledb@blog-database:5432/sampledb'
+# ENV S2I_SCRIPTS_PATH=/usr/libexec/s2i \
+#     S2I_BASH_ENV=/opt/app-root/etc/scl_enable \
+#     DISABLE_COLLECTSTATIC=1 \
+#     DISABLE_MIGRATE=1 \
+#     BLOG_SITE_NAME='GRUPO10 - SOlUTION SPRINT FASE 4 - MBA ARQUITETURA DE SOLUÇÕES' \
+#     BLOG_BANNER_COLOR='blue' \
+#     DATABASE_URL='postgresql://sampledb:sampledb@blog-database:5432/sampledb'
 
 RUN /tmp/scripts/assemble
 
