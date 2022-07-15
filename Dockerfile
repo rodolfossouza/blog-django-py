@@ -5,13 +5,11 @@ USER root
 COPY . /tmp/src
 
 RUN mv /tmp/src/.s2i/bin /tmp/scripts
-    pip install pipsi \
-    pipsi install powershift-cli[all]
     
 RUN rm -rf /tmp/src/.git* && \
     chown -R 1001 /tmp/src && \
     chgrp -R 0 /tmp/src && \
-    chmod -R g+w /tmp/src
+    chmod -R 777 /tmp/src
 
 USER 1001
 
@@ -23,6 +21,6 @@ ENV S2I_SCRIPTS_PATH=/usr/libexec/s2i \
     BLOG_BANNER_COLOR='blue' \
     DATABASE_URL='postgresql://sampledb:sampledb@blog-database:5432/sampledb'   
 
-#RUN /tmp/scripts/assemble
+RUN /tmp/scripts/assemble
 
 CMD [ "/tmp/scripts/run" ]
