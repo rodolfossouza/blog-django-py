@@ -1,4 +1,4 @@
-FROM rodnetcontainer/grupo10blog:v1
+FROM centos/python-35-centos7:latest
 
 USER root
 
