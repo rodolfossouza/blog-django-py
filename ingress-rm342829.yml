@@ -5,10 +5,10 @@ metadata:
   namespace: rm342829
 spec:
   rules:
-    - host: meublog.com
+    - host: grupo10-blog-site-rm342829.apps.na46a.prod.ole.redhat.com
       http:
         paths:
           - path: /
             backend:
               serviceName: grupo10-blog-site
-              servicePort: 8089
+              servicePort: 80

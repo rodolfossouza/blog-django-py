@@ -24,7 +24,6 @@ ENV S2I_SCRIPTS_PATH=/usr/libexec/s2i \
     BLOG_BANNER_COLOR='Red' \
     DATABASE_URL='postgresql://sampledb:sampledb@blog-database:5432/sampledb'   
 
-EXPOSE 8089/tcp
 
 RUN  /tmp/scripts/assemble
 
