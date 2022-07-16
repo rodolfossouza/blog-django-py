@@ -21,7 +21,7 @@ ENV S2I_SCRIPTS_PATH=/usr/libexec/s2i \
     DISABLE_COLLECTSTATIC=1 \
     DISABLE_MIGRATE=1 \
     BLOG_SITE_NAME='GRUPO10 - SOlUTION SPRINT FASE 4 - MBA ARQUITETURA DE SOLUÇÕES' \
-    BLOG_BANNER_COLOR='blue' \
+    BLOG_BANNER_COLOR='Red' \
     DATABASE_URL='postgresql://sampledb:sampledb@blog-database:5432/sampledb'   
 
 
