@@ -185,6 +185,9 @@ jobs:
         build_env: 
           BLOG_SITE_NAME=GRUPO10-BLOG
           BLOG_BANNER_COLOR=blue
+    
+    - name: Create HPA for deployment
+      run:  oc apply -f .\hpa-rm342829.yml
 
     - name: Print application URL
       env:
