@@ -171,7 +171,7 @@ jobs:
         openshift_token: ${{ env.OPENSHIFT_TOKEN }}
         insecure_skip_tls_verify: true
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
-    
+
     - name: Create DataBase
       run: |
         oc new-app postgresql-persistent --name blog-database --param DATABASE_SERVICE_NAME=blog-database --param POSTGRESQL_USER=sampledb --param POSTGRESQL_PASSWORD=sampledb --param POSTGRESQL_DATABASE=sampledb
@@ -193,7 +193,9 @@ jobs:
     
     - name: Create HPA
       run: |
-        oc apply -f hpa-rm342829.yml
+        oc apply -f hpa-rm342829.yml  
+        oc apply -f ingress-rm342829.yml    
+        oc set env deployment/grupo10-blog-site DATABASE_URL=postgresql://sampledb:sampledb@blog-database:5432/sampledb
 
     - name: Print application URL
       env:

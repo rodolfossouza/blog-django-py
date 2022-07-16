@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: example
+  namespace: rm342829
+spec:
+  rules:
+    - host: meublog.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: grupo10-blog-site
+              servicePort: 8089
