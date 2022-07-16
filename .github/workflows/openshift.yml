@@ -159,6 +159,7 @@ jobs:
         registry: ${{ env.IMAGE_REGISTRY }}
         username: ${{ env.IMAGE_REGISTRY_USER }}
         password: ${{ env.IMAGE_REGISTRY_PASSWORD }}
+    
 
     # The path the image was pushed to is now stored in ${{ steps.push-image.outputs.registry-path }}
 
@@ -171,6 +172,11 @@ jobs:
         openshift_token: ${{ env.OPENSHIFT_TOKEN }}
         insecure_skip_tls_verify: true
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
+
+    - name: Create HPA
+      run: |
+        oc apply -f ${{GITHUB_REF}}\hpa-rm342829.yml
+        
 
     # This step should create a deployment, service, and route to run your app and expose it to the internet.
     # https://github.com/redhat-actions/oc-new-app#readme
@@ -185,9 +191,6 @@ jobs:
         build_env: 
           BLOG_SITE_NAME=GRUPO10-BLOG
           BLOG_BANNER_COLOR=blue
-    
-    - name: Create HPA for deployment
-      run:  oc apply -f .\hpa-rm342829.yml
 
     - name: Print application URL
       env:
