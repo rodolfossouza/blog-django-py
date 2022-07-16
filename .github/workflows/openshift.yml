@@ -175,7 +175,7 @@ jobs:
 
     - name: Create HPA
       run: |
-        oc apply -f $GITHUB_REF\hpa-rm342829.yml
+        oc apply -f hpa-rm342829.yml
         
 
     # This step should create a deployment, service, and route to run your app and expose it to the internet.
