@@ -12,6 +12,6 @@ fi
 
 # Run the deployment phase with support for action hooks.
 pip install --upgrade pip
-pip install --upgrade setuptools
-pip install --no-cache-dir powershift-cli[image]
+pip install setuptools
+pip install powershift-cli[all]
 exec powershift image run
