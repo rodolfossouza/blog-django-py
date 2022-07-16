@@ -11,8 +11,4 @@ if [ -d /opt/app-root/wheelhouse ]; then
 fi
 
 # Run the deployment phase with support for action hooks.
-pip install --upgrade pip==20.3.4
-pip install setuptools
-pip install powershift-cli[all]
-pip install powershift-cli[image]
 exec powershift image run
